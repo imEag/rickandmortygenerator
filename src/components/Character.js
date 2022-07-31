@@ -1,6 +1,4 @@
 import React from "react";
-import { useQuery } from "@apollo/client";
-import { GET_RANDOM_CHARACTER } from "../queries/getRandomCharacter";
 
 export const Character = (props) => {
     /* const { loading, error, data } = useQuery(GET_RANDOM_CHARACTER); */
