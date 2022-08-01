@@ -4,6 +4,7 @@ import { GET_RANDOM_CHARACTER } from "./queries/getRandomCharacter";
 
 import { History } from './components/History';
 import { MainCharacter } from './components/MainCharacter';
+import { DefaultMessage } from './components/DefaultMessage';
 
 
 export default function App() {
@@ -32,11 +33,15 @@ export default function App() {
     <div>
       <button onClick={generate}>Generate!</button>
 
-      {/* checks if history is empty, if not, displays last item in the array */}
-      {history.length > 0 ? <MainCharacter data={history.at(-1)} /> : null}
-
-      {/* checks if history has more than 1 item */}
-      {history.length > 1 ? <History history={history} /> : null}
+      {/* checks if history is empty, if not, displays last item and history */}
+      {history.length > 0
+        ? <>
+          <MainCharacter data={history.at(-1)} />
+          <History history={history} />
+        </>
+        :
+        <DefaultMessage />
+      }
     </div>
   );
 }

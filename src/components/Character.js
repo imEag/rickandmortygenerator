@@ -1,7 +1,6 @@
 import React from "react";
 
 export const Character = (props) => {
-    /* const { loading, error, data } = useQuery(GET_RANDOM_CHARACTER); */
     const character = props.data
     return (
         <div>
