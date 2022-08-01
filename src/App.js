@@ -13,25 +13,30 @@ export default function App() {
 
   // history to store al generated characters
   const [history, setHistory] = useState([]);
+  const [disabled, setDisabled] = useState(false);
 
-  const [isPending, startTransition] = useTransition();
   const generate = () => {
-
-    //TODO find a way to avoid generating characters while a query is still loading
-
+    // Disables generate button
+    setDisabled(true);
+    
     // fecthes using query
-    refetch()
-    // saves data when load is completed
-    const characterData = data?.randomCharacter;
-
-    //store character in history
-    setHistory([...history, characterData]);
+    refetch();
   };
+  
+  useEffect(() => {
+    if (data) {
+      //store character in history
+      setHistory([...history, data.randomCharacter]);
+
+      //enables generate button
+      setDisabled(false);
+    }
+  }, [data]);
 
 
   return (
     <div>
-      <button onClick={generate}>Generate!</button>
+      <button disabled={disabled} onClick={generate}>Generate!</button>
 
       {/* checks if history is empty, if not, displays last item and history */}
       {history.length > 0
