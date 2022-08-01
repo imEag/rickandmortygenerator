@@ -18,6 +18,8 @@ export default function App() {
   const generate = () => {
 
     startTransition(() => {
+      //TODO find a way to avoid generating characters while a query is still loading
+      
       // fecthes using query
       refetch()
       // saves data when load is completed
