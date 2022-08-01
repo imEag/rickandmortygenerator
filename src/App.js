@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import _ from 'lodash';
 
 import { useRandomCharacter } from './custom_hooks/useRandomCharacter';
 
@@ -7,7 +8,7 @@ import { Character } from './components/Character';
 
 
 export default function App() {
-  // qgraphql query, enabled: false to avoid fetching automatically
+  // get character data from use random character hook.
   const { error, loading, data, refetch } = useRandomCharacter();
 
   // history to store al generated characters
@@ -32,6 +33,20 @@ export default function App() {
     }
   }, [data]);
 
+  const showCharacter = (character) => {
+    //takes the item given to the top of the array to show its information
+
+    //gets a new array without the element given
+    const new_history = _.remove(history, (element) => element.id !== character.id);
+    
+    //takes the element given to the last place
+    new_history.push(character);
+
+    //set new history
+    setHistory(new_history);
+
+  };
+
   if (error) return <div>An error ocurred.</div>
 
   return (
@@ -42,7 +57,9 @@ export default function App() {
       {history.length > 0
         ? <>
           <Character data={history.at(-1)} />
-          <History history={history} />
+          
+          {/* passes the showCharacter function to child */}
+          <History history={history} parent={{ showCharacter: showCharacter.bind(this) }} />
         </>
         : null
       }

@@ -11,7 +11,9 @@ export const History = (props) => {
                 return (
                     <div className="character" key={index}>
                         <CharacterPreview className="character__detail" data={characterData} />
-                        <button className="character__button">View</button>
+
+                        {/* Calls showCharacter function declared in parent component */}
+                        <button onClick={() => props.parent.showCharacter(characterData)} className="character__button">View</button>
                     </div>
                 )
             })}
