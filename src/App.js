@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { startTransition, useEffect, useState, useTransition } from 'react';
 import { useQuery } from "@apollo/client";
 import { GET_RANDOM_CHARACTER } from "./queries/getRandomCharacter";
 
@@ -8,21 +8,25 @@ import { MainCharacter } from './components/MainCharacter';
 
 export default function App() {
   // qgraphql query, enabled: false to avoid fetching automatically
-  const { data, refetch } = useQuery(GET_RANDOM_CHARACTER, { enabled: false });
+  const { loading, data, refetch } = useQuery(GET_RANDOM_CHARACTER, { enabled: false });
 
   // history to store al generated characters
-  const [history, setHistory] = useState([])
+  const [history, setHistory] = useState([]);
 
+  const [isPending, startTransition] = useTransition();
   const generate = () => {
-    // fecthes using query
-    refetch()
 
-    // saves data when load is completed
-    const characterData = data?.randomCharacter;
-    
-    //store character in history
-    setHistory([...history, characterData]);
+    startTransition(() => {
+      // fecthes using query
+      refetch()
+      // saves data when load is completed
+      const characterData = data?.randomCharacter;
+
+      //store character in history
+      setHistory([...history, characterData]);
+    })
   };
+
 
   return (
     <div>
@@ -32,10 +36,7 @@ export default function App() {
       {history.length > 0 ? <MainCharacter data={history.at(-1)} /> : null}
 
       {/* checks if history has more than 1 item */}
-      {history.length > 1
-        ?
-        <History history={history} />
-        : null}
+      {history.length > 1 ? <History history={history} /> : null}
     </div>
   );
 }
