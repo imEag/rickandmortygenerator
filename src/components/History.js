@@ -3,6 +3,7 @@ import React from "react";
 import { CharacterPreview } from "./CharacterPreview";
 
 export const History = (props) => {
+    if (!props.history) return null;
     return (
         /* displays all items (except the last one) but in reverse */
         <div className="history">

@@ -2,6 +2,7 @@ import React from "react";
 
 export const Character = (props) => {
     const character = props.data
+    if (!props.data) return null;
     return (
         <div className="character">
             <img className="character__img" src={character.image ? character.image : "http://via.placeholder.com/400x400"} />

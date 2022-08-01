@@ -17,23 +17,21 @@ export default function App() {
   const [isPending, startTransition] = useTransition();
   const generate = () => {
 
-    startTransition(() => {
-      //TODO find a way to avoid generating characters while a query is still loading
-      
-      // fecthes using query
-      refetch()
-      // saves data when load is completed
-      const characterData = data?.randomCharacter;
+    //TODO find a way to avoid generating characters while a query is still loading
 
-      //store character in history
-      setHistory([...history, characterData]);
-    })
+    // fecthes using query
+    refetch()
+    // saves data when load is completed
+    const characterData = data?.randomCharacter;
+
+    //store character in history
+    setHistory([...history, characterData]);
   };
 
 
   return (
     <div>
-      <button onClick={generate}>{isPending ? "Loading" : "Generate!"}</button>
+      <button onClick={generate}>Generate!</button>
 
       {/* checks if history is empty, if not, displays last item and history */}
       {history.length > 0
