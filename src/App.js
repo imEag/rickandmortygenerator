@@ -1,15 +1,14 @@
-import React, { startTransition, useEffect, useState, useTransition } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from "@apollo/client";
 import { GET_RANDOM_CHARACTER } from "./queries/getRandomCharacter";
 
 import { History } from './components/History';
-import { DefaultMessage } from './components/DefaultMessage';
 import { Character } from './components/Character';
 
 
 export default function App() {
   // qgraphql query, enabled: false to avoid fetching automatically
-  const { loading, data, refetch } = useQuery(GET_RANDOM_CHARACTER, { enabled: false });
+  const { error, loading, data, refetch } = useQuery(GET_RANDOM_CHARACTER, { enabled: false });
 
   // history to store al generated characters
   const [history, setHistory] = useState([]);
@@ -18,11 +17,11 @@ export default function App() {
   const generate = () => {
     // Disables generate button
     setDisabled(true);
-    
+
     // fecthes using query
     refetch();
   };
-  
+
   useEffect(() => {
     if (data) {
       //store character in history
@@ -33,6 +32,7 @@ export default function App() {
     }
   }, [data]);
 
+  if (error) return <div>An error ocurred.</div>
 
   return (
     <div>
@@ -44,8 +44,7 @@ export default function App() {
           <Character data={history.at(-1)} />
           <History history={history} />
         </>
-        :
-        <DefaultMessage />
+        : null
       }
     </div>
   );
