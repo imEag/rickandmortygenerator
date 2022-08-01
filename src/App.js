@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from "@apollo/client";
-import { GET_RANDOM_CHARACTER } from "./queries/getRandomCharacter";
+
+import { useRandomCharacter } from './custom_hooks/useRandomCharacter';
 
 import { History } from './components/History';
 import { Character } from './components/Character';
@@ -8,7 +8,7 @@ import { Character } from './components/Character';
 
 export default function App() {
   // qgraphql query, enabled: false to avoid fetching automatically
-  const { error, loading, data, refetch } = useQuery(GET_RANDOM_CHARACTER, { enabled: false });
+  const { error, loading, data, refetch } = useRandomCharacter();
 
   // history to store al generated characters
   const [history, setHistory] = useState([]);
