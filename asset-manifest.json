@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/rickandmortygenerator/static/css/main.e6c13ad2.css",
+    "main.js": "/rickandmortygenerator/static/js/main.71d63faa.js",
+    "static/js/787.1bcfedfd.chunk.js": "/rickandmortygenerator/static/js/787.1bcfedfd.chunk.js",
+    "index.html": "/rickandmortygenerator/index.html",
+    "main.e6c13ad2.css.map": "/rickandmortygenerator/static/css/main.e6c13ad2.css.map",
+    "main.71d63faa.js.map": "/rickandmortygenerator/static/js/main.71d63faa.js.map",
+    "787.1bcfedfd.chunk.js.map": "/rickandmortygenerator/static/js/787.1bcfedfd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.71d63faa.js"
+  ]
+}
