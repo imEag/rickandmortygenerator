@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { useRandomCharacter } from './custom_hooks/useRandomCharacter';
 import _ from 'lodash';
+import { FastAverageColor } from 'fast-average-color';
 
+import { useRandomCharacter } from './custom_hooks/useRandomCharacter';
 import { History } from './components/History';
 import { Character } from './components/Character';
 import { Header } from './components/Header';
@@ -10,6 +11,7 @@ import { StyledButton } from "./syled_components/StyledButton";
 
 const StyledApp = styled.div`
     background-color: ${props => props.theme.primary || "white"};
+    transition: all 0.3s ease-in-out;
 `;
 
 const StyledDataSection = styled.div`
@@ -32,6 +34,7 @@ export default function App() {
   const [history, setHistory] = useState([]);
   const [disabled, setDisabled] = useState(false);
 
+  //theme for app
   const [theme, setTheme] = useState({
     primary: "rgba(18,0,134, 1)",
     primary_dark: "rgba(9,0,64, 1)",
@@ -39,7 +42,29 @@ export default function App() {
     border: "2rem",
     light: "rgba(255,255,255, 0.20)",
     hover: "rgba(255,255,255, 0.40)"
-  })
+  });
+
+  const setAverageColor = () => {
+    const fac = new FastAverageColor();
+
+    const img = data.randomCharacter.image;
+
+    fac.getColorAsync(img)
+      .then(color => {
+        console.log(color)
+
+        const new_theme = { ...theme }
+        new_theme.primary = color.rgba
+        
+        if (color.isLight) {
+          new_theme.secundary = "black";
+        } else {
+          new_theme.secundary = "white";
+        }
+        setTheme(new_theme);
+      })
+      .catch(err => console.error(err));
+  };
 
   const generate = () => {
     // Disables generate button
@@ -53,6 +78,8 @@ export default function App() {
     if (data) {
       //store character in history
       setHistory([...history, data.randomCharacter]);
+
+      setAverageColor();
 
       //enables generate button
       setDisabled(false);

@@ -34,7 +34,6 @@ const GlobalStyle = createGlobalStyle`
     
     body {
         font-family: 'Raleway', sans-serif;
-        background-color: ${(props) => props.primary};
         font-size: 2rem;
     }
 

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
-    background-color: ${props => props.theme.primary_dark || "#23003a"};
+    background-color: ${props => props.theme.light || "#23003a"};
     color: ${props => props.theme.secundary || "white"};
     display: flex;
     align-items: center;
