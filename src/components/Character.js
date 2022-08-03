@@ -8,9 +8,10 @@ const StyledCharacter = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 1.4rem 2rem;
     gap: 2rem;
     width: 100%;
+    min-height: 39rem;
 
     @media (max-width: 800px) {
         flex-direction: column;
