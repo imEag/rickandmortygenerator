@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { useRandomCharacter } from './custom_hooks/useRandomCharacter';
 import _ from 'lodash';
 
@@ -13,7 +13,7 @@ const StyledApp = styled.div`
 `;
 
 const StyledDataSection = styled.div`
-    color: black;
+    color: ${props => props.theme.secundary || "white"};
     display: flex;
     max-width: 76rem;
     margin: 0 auto;
@@ -31,6 +31,15 @@ export default function App() {
   // history to store al generated characters
   const [history, setHistory] = useState([]);
   const [disabled, setDisabled] = useState(false);
+
+  const [theme, setTheme] = useState({
+    primary: "rgba(18,0,134, 1)",
+    primary_dark: "rgba(9,0,64, 1)",
+    secundary: "white",
+    border: "2rem",
+    light: "rgba(255,255,255, 0.20)",
+    hover: "rgba(255,255,255, 0.40)"
+  })
 
   const generate = () => {
     // Disables generate button
@@ -67,24 +76,26 @@ export default function App() {
   if (error) return <div>An error ocurred.</div>
 
   return (
-    <StyledApp theme={{ primary: "#520086" }}>
-      <Header />
-      <StyledDataSection>
+    <ThemeProvider theme={theme}>
+      <StyledApp>
+        <Header />
+        <StyledDataSection>
 
-        {/* checks if history is empty, if not, displays last item and history */}
-        {history.length > 0
-          ? <Character data={history.at(-1)} />
-          : null
-        }
+          {/* checks if history is empty, if not, displays last item and history */}
+          {history.length > 0
+            ? <Character data={history.at(-1)} />
+            : null
+          }
 
-        <StyledButton disabled={disabled} onClick={generate}>Generate!</StyledButton>
+          <StyledButton disabled={disabled} onClick={generate}>{!disabled ? "Generate!" : "..."}</StyledButton>
 
-        {/* checks if history is empty, if not, displays last item and history */}
-        {history.length > 0
-          ? <History history={history} parent={{ showCharacter: showCharacter.bind(this) }} />
-          : null
-        }
-      </StyledDataSection>
-    </StyledApp >
+          {/* checks if history is empty, if not, displays last item and history */}
+          {history.length > 0
+            ? <History history={history} parent={{ showCharacter: showCharacter.bind(this) }} />
+            : null
+          }
+        </StyledDataSection>
+      </StyledApp >
+    </ThemeProvider>
   );
 }

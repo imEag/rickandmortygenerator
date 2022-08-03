@@ -17,6 +17,6 @@ export const StyledButton = styled.button`
     transition: all 0.3s ease-in-out;
 
     &:hover {
-        background-color: ${props => props.theme.buttonhover || "rgba(255,255,255, 0.40)"};
+        background-color: ${props => props.theme.hover || "rgba(255,255,255, 0.40)"};
     }
 `;
