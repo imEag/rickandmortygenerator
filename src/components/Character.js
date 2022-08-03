@@ -90,7 +90,16 @@ const StyledTable = styled.table`
 `;
 
 export const Character = (props) => {
-    const character = props.data
+    const character = props.data;
+
+    const convertDate = (dateString) => {
+        return new Date(dateString).toLocaleDateString('en-us', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+    };
+
     if (!props.data) return null;
     return (
         <StyledCharacter>
@@ -105,7 +114,7 @@ export const Character = (props) => {
                             <td data-label="Gender">{character.gender ? character.gender : "Unknown"}</td>
                             <td data-label="Origin">{character.origin ? character.origin.name : "Unknown"}</td>
                             <td data-label="Location">{character.location ? character.location.name : "Unknown"}</td>
-                            <td data-label="Created">{character.created ? character.created : "Unknown"}</td>
+                            <td data-label="Created">{character.created ? convertDate(character.created) : "Unknown"}</td>
                         </tr>
                     </tbody>
                 </StyledTable>
