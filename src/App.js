@@ -12,6 +12,7 @@ import { StyledButton } from "./syled_components/StyledButton";
 const StyledApp = styled.div`
     background-color: ${props => props.theme.primary || "white"};
     transition: all 0.3s ease-in-out;
+    min-height: 100vh;
 `;
 
 const StyledDataSection = styled.div`

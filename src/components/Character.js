@@ -15,10 +15,6 @@ const StyledCharacter = styled.div`
     @media (max-width: 800px) {
         flex-direction: column;
     }
-
-    @media (max-width: 500px) {
-        padding: 1rem;
-    }
 `;
 
 const StyledImg = styled.img`
