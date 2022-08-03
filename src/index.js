@@ -7,6 +7,9 @@ import reportWebVitals from './reportWebVitals';
 /* Apollo */
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
+/* Styled components */
+import { GlobalStyle } from './syled_components/GlobalStyle';
+
 const client = new ApolloClient({
   uri: 'http://137.184.208.42/graphql',
   cache: new InMemoryCache(),
@@ -15,6 +18,7 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ApolloProvider client={client}>
+    <GlobalStyle />
     <App />
   </ApolloProvider>,
 );
