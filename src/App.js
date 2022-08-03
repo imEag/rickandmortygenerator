@@ -45,17 +45,20 @@ export default function App() {
   });
 
   const setAverageColor = () => {
+    //change theme colors according to average color in image
+
+    //new instance of this library
     const fac = new FastAverageColor();
 
     const img = data.randomCharacter.image;
 
     fac.getColorAsync(img)
       .then(color => {
-        console.log(color)
-
+        //change primary color
         const new_theme = { ...theme }
         new_theme.primary = color.rgba
         
+        //change secundary color according to brightness.
         if (color.isLight) {
           new_theme.secundary = "black";
         } else {
