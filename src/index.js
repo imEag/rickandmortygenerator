@@ -8,12 +8,42 @@ import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
 /* Styled components */
-import { GlobalStyle } from './syled_components/GlobalStyle';
+import styled, { createGlobalStyle } from "styled-components";
 
 const client = new ApolloClient({
   uri: 'http://137.184.208.42/graphql',
   cache: new InMemoryCache(),
 });
+
+const GlobalStyle = createGlobalStyle`
+
+    html {
+        font-size: 62.5%;
+        scroll-behavior: smooth;
+    }
+
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
+    
+    body {
+        font-family: 'Raleway', sans-serif;
+        background-color: ${(props) => props.primary};
+        font-size: 2rem;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+        font-size: 2rem;
+    }
+
+`;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
