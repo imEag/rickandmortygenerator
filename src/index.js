@@ -11,7 +11,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client
 import styled, { createGlobalStyle } from "styled-components";
 
 const client = new ApolloClient({
-  uri: 'http://rickandmortygenerator.site/graphql',
+  uri: 'https://rickandmortygenerator.site/graphql',
   cache: new InMemoryCache(),
 });
 
