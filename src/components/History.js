@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { CharacterPreview } from "./CharacterPreview";
+import { StyledButton } from "../syled_components/StyledButton";
 
 const StyledHistory = styled.div`
     width: 100%;
@@ -10,39 +11,24 @@ const StyledHistory = styled.div`
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    padding: 2rem;
     
     @media (max-width: 400px) {
         padding: 1rem;
     }
-`;
+    `;
 
 const StyledHistoryCharacter = styled.div`
     width: 100%;
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 2rem;
 `;
 
-const StyleViewButton = styled.button`
-    cursor: pointer;
-    background-color: ${props => props.theme.light || "rgba(255,255,255, 0.20)"};
-    color: ${props => props.theme.secundary || "white"};
-    border-radius: ${props => props.theme.border || "2rem"};
-    border: 0;
+const StyleViewButton = styled(StyledButton)`
     padding: 6rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: auto;
     font-size: 2rem;
-    font-weight: bold;
-    transition: all 0.3s ease-in-out;
-
-    &:hover {
-        background-color: ${props => props.theme.light || "rgba(255,255,255, 0.40)"};
-    }
-
+    grid-column: 5/6;
     @media (max-width: 600px) {
         padding: 4rem;
     }

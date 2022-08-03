@@ -10,6 +10,7 @@ const StyledCharacter = styled.div`
     align-items: center;
     padding: 2rem;
     gap: 2rem;
+    width: 100%;
 
     @media (max-width: 800px) {
         flex-direction: column;
@@ -33,7 +34,7 @@ const StyledDetails = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 40rem;
+    width: 100%;
 
     & h2 {
         font-size: 2.5rem;

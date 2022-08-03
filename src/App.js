@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { useRandomCharacter } from './custom_hooks/useRandomCharacter';
 import _ from 'lodash';
 
 import { History } from './components/History';
 import { Character } from './components/Character';
 import { Header } from './components/Header';
-
-import styled from 'styled-components';
+import { StyledButton } from "./syled_components/StyledButton";
 
 const StyledApp = styled.div`
     background-color: ${props => props.theme.primary || "white"};
@@ -20,7 +20,7 @@ const StyledDataSection = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 4rem 0;
+    padding: 4rem 2rem;
     gap: 4rem;
 `;
 
@@ -77,7 +77,7 @@ export default function App() {
           : null
         }
 
-        <button disabled={disabled} onClick={generate}>Generate!</button>
+        <StyledButton disabled={disabled} onClick={generate}>Generate!</StyledButton>
 
         {/* checks if history is empty, if not, displays last item and history */}
         {history.length > 0

@@ -5,6 +5,7 @@ const StyledPreview = styled.div`
     background-color: ${props => props.theme.light || "rgba(255,255,255, 0.20)"};
     color: ${props => props.theme.secundary || "white"};
     border-radius: ${props => props.theme.border || "2rem"};
+    grid-column: 1/5;
     padding: 2rem;
     display: flex;
     justify-content:flex-start;
@@ -18,17 +19,22 @@ const StyledPreview = styled.div`
         border-radius: ${props => props.theme.border || "2rem"};
     }
 
+    & div {
+        overflow-x: hidden;
+    }
+    
     & div h4 {
         border-bottom: 0.2rem solid ${props => props.theme.secundary || "white"};
+        text-overflow: ellipsis;
     }
 
     @media (max-width: 600px) {
         padding: 1rem;
 
         & img {
-        width: 8rem;
-        height: 8rem;
-    }
+            width: 8rem;
+            height: 8rem;
+        }
     }
 `;
 
