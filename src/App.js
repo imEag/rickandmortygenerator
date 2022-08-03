@@ -57,7 +57,7 @@ export default function App() {
         //change primary color
         const new_theme = { ...theme }
         new_theme.primary = color.rgba
-        
+
         //change secundary color according to brightness.
         if (color.isLight) {
           new_theme.secundary = "black";
@@ -67,6 +67,13 @@ export default function App() {
         setTheme(new_theme);
       })
       .catch(err => console.error(err));
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   const generate = () => {
@@ -101,6 +108,8 @@ export default function App() {
     //set new history
     setHistory(new_history);
 
+    //scroll to character details
+    scrollToTop();
   };
 
   if (error) return <div>An error ocurred.</div>
