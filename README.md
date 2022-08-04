@@ -14,7 +14,8 @@ Is a web application about Rick And Morty TV Series, here you can get any kind o
 
 ## Tech Stack
 
-**Front End side: HTML, CSS, JavaScript, React, ApolloClient, StyledComponents
+**Front End side: HTML, CSS, JavaScript, React, ApolloClient, StyledComponents.
+
 **Server side: Node.JS, ExpressJS, MongoDB, GraphQL.
 
 ## Screenshots
